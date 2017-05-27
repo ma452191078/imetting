@@ -54,9 +54,11 @@ public class SeatInfoController {
     @PostMapping("/getSeatInfoByUser")
     public Page<SeatInfo> getSeatInfoByUser(@RequestParam("seatUser") String seatUser,
                                             @RequestParam(value = "page", defaultValue = "0") Integer page,
-                                            @RequestParam(value = "size", defaultValue = "2") Integer size){
+                                            @RequestParam(value = "size", defaultValue = "5") Integer size){
         Pageable pageable = new PageRequest(page,size);
-        return seatInfoRepository.findBySeatUser(seatUser, pageable);
+        List<SeatInfo> list = seatInfoRepository.findBySeatUser(seatUser);
+        Page<SeatInfo> seatInfos = seatInfoRepository.findBySeatUser(seatUser, pageable);
+        return seatInfos;
     }
 
     /**

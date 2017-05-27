@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface SeatInfoRepository extends JpaRepository<SeatInfo, Integer> {
 
-//    public List<SeatInfo> findBySeatUser(String seatUser);
+    public List<SeatInfo> findBySeatUser(String seatUser);
 
     public Page<SeatInfo> findBySeatUser(String seatUser, Pageable pageable);
 
