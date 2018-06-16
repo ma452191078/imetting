@@ -1,5 +1,6 @@
 package com.majy.metting.model;
 
+import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Column;
@@ -14,6 +15,7 @@ import java.util.Date;
  */
 
 @Entity
+@Data
 public class Meeting {
 
     @Id
@@ -43,70 +45,11 @@ public class Meeting {
 //    创建日期
     private Date createDate;
 
+//    评分规则
+    private String meetingRole;
+
     public Meeting() {
     }
 
-    public String getMeetingId() {
-        return meetingId;
-    }
 
-    public void setMeetingId(String meetingId) {
-        this.meetingId = meetingId;
-    }
-
-    public String getMeetingName() {
-        return meetingName;
-    }
-
-    public void setMeetingName(String meetingName) {
-        this.meetingName = meetingName;
-    }
-
-    public String getMeetingRemark() {
-        return meetingRemark;
-    }
-
-    public void setMeetingRemark(String meetingRemark) {
-        this.meetingRemark = meetingRemark;
-    }
-
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
-    public Integer getEnableFlag() {
-        return enableFlag;
-    }
-
-    public void setEnableFlag(Integer enableFlag) {
-        this.enableFlag = enableFlag;
-    }
-
-    public Integer getCreator() {
-        return creator;
-    }
-
-    public void setCreator(Integer creator) {
-        this.creator = creator;
-    }
-
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
 }

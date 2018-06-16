@@ -1,8 +1,16 @@
 package com.majy.metting.model;
 
+import lombok.Data;
+
+import javax.persistence.Entity;
+
 /**
+ *
  * Created by majingyuan on 2016/12/22.
  */
+
+@Entity
+@Data
 public class AccessToken {
     //错误代码
     private int errCode;
@@ -13,35 +21,7 @@ public class AccessToken {
     //凭证有效时间，单位：秒
     private int expiresIn;
 
-    public int getErrCode() {
-        return errCode;
-    }
+    public AccessToken() {
 
-    public void setErrCode(int errCode) {
-        this.errCode = errCode;
-    }
-
-    public String getErrMsg() {
-        return errMsg;
-    }
-
-    public void setErrMsg(String errMsg) {
-        this.errMsg = errMsg;
-    }
-
-    public String getAccessToken() {
-        return accessToken;
-    }
-
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
-    }
-
-    public int getExpiresIn() {
-        return expiresIn;
-    }
-
-    public void setExpiresIn(int expiresIn) {
-        this.expiresIn = expiresIn;
     }
 }
