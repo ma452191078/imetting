@@ -1,8 +1,3 @@
 spring:
   profiles:
     active: prd
-
-wxconf:
-  corpID: wxe83ec6aeca12528c
-  secret: F0eFV8X64osRyItbPy2y1P7NR0g_c1Bt_3FX42T84HyOZ7e0Vvwq31hMqyanyCri
-  expires_in: 7200

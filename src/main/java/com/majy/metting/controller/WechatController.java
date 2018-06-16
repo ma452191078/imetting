@@ -1,0 +1,56 @@
+package com.majy.metting.controller;
+
+import com.majy.metting.configuration.WechatConfig;
+import lombok.extern.slf4j.Slf4j;
+import me.chanjar.weixin.common.exception.WxErrorException;
+import me.chanjar.weixin.cp.api.WxCpOAuth2Service;
+import me.chanjar.weixin.cp.api.WxCpService;
+import me.chanjar.weixin.cp.bean.WxCpUser;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * @author majingyuan
+ * @date Create in 2017/11/23 16:50
+ */
+
+@RestController
+@RequestMapping("/wechat")
+@Slf4j
+public class WechatController {
+
+    @Autowired
+    WxCpService wxCpService;
+    @Autowired
+    WechatConfig wechatConfig;
+
+    @RequestMapping("/authorize")
+    public Map<String, String> authorize(){
+        String redirectUrl = wechatConfig.getRedirectUrl();
+        WxCpOAuth2Service wxCpOAuth2Service = wxCpService.getOauth2Service();
+        String url = wxCpOAuth2Service.buildAuthorizationUrl(redirectUrl, null);
+        Map<String, String> param = new HashMap<>();
+        param.put("url", url);
+        return param;
+    }
+
+    @RequestMapping("/getUserInfo")
+    public String getUserInfo(@RequestParam("code") String code) {
+        WxCpOAuth2Service wxCpOAuth2Service = wxCpService.getOauth2Service();
+        WxCpUser wxCpUser = null;
+        String[] res = new String[0];
+        try {
+            res = wxCpOAuth2Service.getUserInfo(code);
+            wxCpUser = wxCpService.getUserService().getById(res[0]);
+            return wxCpUser.toJson();
+        } catch (WxErrorException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+}

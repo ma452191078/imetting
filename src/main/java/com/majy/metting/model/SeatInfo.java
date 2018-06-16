@@ -16,7 +16,6 @@ import javax.persistence.Id;
 public class SeatInfo {
 
     @Id
-    @GeneratedValue
     private Integer seatId;
     private String seatRoom;	//会场
     private String seatRow;		//行
